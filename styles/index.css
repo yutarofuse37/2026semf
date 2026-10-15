@@ -1,0 +1,271 @@
+:root {
+  --st-blue: #1c3177;
+  --st-blue-sub: #7f96c2;
+  --st-blue-soft: #cfdbed;
+  --st-blue-bg: #f9fbff;
+  --st-alert: #b42318;
+  --st-ink: #1a1a1a;
+  --st-muted: #444444;
+  --slidev-theme-primary: #1c3177;
+}
+
+.slidev-layout {
+  color: var(--st-ink);
+  background: #fff;
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+.slidev-layout h1 {
+  color: var(--st-blue) !important;
+  font-size: 1.7rem !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.45rem !important;
+}
+
+.slidev-layout li {
+  margin-top: 0.12em;
+  margin-bottom: 0.12em;
+}
+
+/* Sparse slides: fill leftover whitespace with larger type */
+.slidev-layout.roomy {
+  font-size: 1.22rem;
+  line-height: 1.52;
+}
+
+.slidev-layout.roomy li + li {
+  margin-top: 0.35em;
+}
+
+.slidev-layout.roomy .callout,
+.slidev-layout.roomy .callout-strong,
+.slidev-layout.roomy .callout-alert,
+.slidev-layout.roomy .callout-bar {
+  font-size: 1.08rem;
+  line-height: 1.42;
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.slidev-layout.roomy .katex-display {
+  margin: 0.45em 0 !important;
+}
+
+.slidev-layout.roomy .diagram-wrap {
+  margin-top: 0.85rem;
+}
+
+/* Dense slides: keep content inside the frame */
+.slidev-layout.dense {
+  font-size: 1rem;
+  line-height: 1.38;
+}
+
+.slidev-layout.dense h1 {
+  font-size: 1.5rem !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.slidev-layout.dense .callout,
+.slidev-layout.dense .callout-strong,
+.slidev-layout.dense .callout-alert,
+.slidev-layout.dense .callout-bar {
+  font-size: 0.92rem;
+  line-height: 1.35;
+  padding: 0.28rem 0.55rem;
+  margin-top: 0.28rem;
+  margin-bottom: 0.22rem;
+}
+
+.slidev-layout.dense .katex-display {
+  margin: 0.22em 0 !important;
+}
+
+.slidev-layout.dense li + li {
+  margin-top: 0.15em;
+}
+
+.slidev-layout:not(.cover):not(.section):not(.intro):not(.end) {
+  overflow: hidden;
+  padding-bottom: 2.5rem !important;
+}
+
+/* Seriph theme sets h1 + p to opacity-50 — keep lead lines fully readable */
+.slidev-layout h1 + p {
+  opacity: 1 !important;
+  color: var(--st-ink) !important;
+  margin-top: 0.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.slidev-layout.proof-steps p {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.slidev-layout.cut-definition p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.slidev-layout.cut-definition > h1 + p {
+  margin-top: 0.15rem;
+}
+
+.slidev-layout a {
+  color: var(--st-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.slidev-layout.section h1 {
+  color: var(--st-blue) !important;
+}
+
+.slidev-layout.cover h1 {
+  color: #000000 !important;
+}
+
+.role-def {
+  color: var(--st-blue);
+  font-weight: 700;
+}
+
+.role-atk {
+  color: var(--st-alert);
+  font-weight: 700;
+}
+
+.caption {
+  font-size: 0.92rem;
+  color: var(--st-muted);
+  line-height: 1.45;
+}
+
+.caption .katex {
+  color: inherit;
+}
+
+/* Hide default page number; custom footer provides it */
+#slide-content .slidev-page-number,
+.slidev-page-number,
+div[class*='page-number'] {
+  display: none !important;
+}
+
+.callout,
+.callout-strong,
+.callout-alert,
+.callout-bar {
+  margin-top: 0.45rem;
+  margin-bottom: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.4rem;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.38;
+  color: var(--st-ink);
+}
+
+.callout > :first-child,
+.callout-strong > :first-child,
+.callout-alert > :first-child,
+.callout-bar > :first-child {
+  margin-top: 0 !important;
+}
+
+.callout > :last-child,
+.callout-strong > :last-child,
+.callout-alert > :last-child,
+.callout-bar > :last-child {
+  margin-bottom: 0 !important;
+}
+
+.callout p,
+.callout-strong p,
+.callout-alert p,
+.callout-bar p,
+.callout ul,
+.callout-strong ul,
+.callout-alert ul,
+.callout-bar ul {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.callout .katex-display,
+.callout-strong .katex-display,
+.callout-alert .katex-display,
+.callout-bar .katex-display {
+  margin: 0.35em 0 !important;
+}
+
+.callout {
+  border: 1px solid color-mix(in srgb, var(--st-blue) 28%, transparent);
+  background: color-mix(in srgb, var(--st-blue) 6%, white);
+}
+
+.callout-strong {
+  border: 2px solid color-mix(in srgb, var(--st-blue) 55%, transparent);
+  background: color-mix(in srgb, var(--st-blue) 8%, white);
+}
+
+.callout-alert {
+  border: 2px solid color-mix(in srgb, var(--st-alert) 45%, transparent);
+  background: color-mix(in srgb, var(--st-alert) 6%, white);
+}
+
+.callout-bar {
+  border-left: 4px solid var(--st-blue);
+  background: color-mix(in srgb, var(--st-blue) 8%, white);
+}
+
+.diagram-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.diagram-wrap > * {
+  width: 100%;
+  max-width: 52rem;
+}
+
+/* Prevent Slidev theme font-size from blowing up SVG labels */
+.slidev-layout svg text {
+  font-size: 11px;
+  font-family: system-ui, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+}
+
+.diagram-caption {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  color: var(--st-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.slidev-layout.section {
+  background:
+    linear-gradient(135deg, #f9fbff 0%, #ffffff 45%, #e4ebf6 100%);
+}
+
+.slidev-layout.section h1::after {
+  content: '';
+  display: block;
+  width: 4.5rem;
+  height: 3px;
+  margin-top: 0.85rem;
+  background: var(--st-blue-sub);
+}
+
+/* Keep OPT comparison tables and their explanations on one slide. */
+.slidev-layout.opt-table th,
+.slidev-layout.opt-table td {
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
