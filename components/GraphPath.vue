@@ -24,19 +24,19 @@ const WEAK = '#b42318'
         <g class="gp__half gp__half--l">
           <line x1="52" y1="58" x2="98" y2="58" :stroke="BLUE" stroke-width="5" stroke-linecap="round" />
           <line class="gp__mid-half gp__mid-half--thin" x1="122" y1="58" x2="142" y2="58" :stroke="WEAK" stroke-linecap="round" />
-          <circle cx="40" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <circle cx="110" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <text x="40" y="62" text-anchor="middle" class="gp__num">1</text>
-          <text x="110" y="62" text-anchor="middle" class="gp__num">2</text>
+          <circle cx="40" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <circle cx="110" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <text x="40" y="63" text-anchor="middle" class="gp__num">1</text>
+          <text x="110" y="63" text-anchor="middle" class="gp__num">2</text>
         </g>
 
         <g class="gp__half gp__half--r">
           <line class="gp__mid-half gp__mid-half--thin" x1="158" y1="58" x2="178" y2="58" :stroke="WEAK" stroke-linecap="round" />
           <line x1="202" y1="58" x2="248" y2="58" :stroke="BLUE" stroke-width="5" stroke-linecap="round" />
-          <circle cx="190" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <circle cx="260" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <text x="190" y="62" text-anchor="middle" class="gp__num">3</text>
-          <text x="260" y="62" text-anchor="middle" class="gp__num">4</text>
+          <circle cx="190" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <circle cx="260" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <text x="190" y="63" text-anchor="middle" class="gp__num">3</text>
+          <text x="260" y="63" text-anchor="middle" class="gp__num">4</text>
         </g>
       </svg>
       <div class="gp__meta"><Katex expr="w_{12}=w_{34}=0.45,\ w_{23}=0.10" /></div>
@@ -60,20 +60,20 @@ const WEAK = '#b42318'
 
         <g class="gp__half gp__half--l gp__half--hold">
           <line x1="52" y1="58" x2="98" y2="58" :stroke="SUB" stroke-width="1.5" stroke-linecap="round" />
-          <circle cx="40" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <circle cx="110" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <text x="40" y="62" text-anchor="middle" class="gp__num">1</text>
-          <text x="110" y="62" text-anchor="middle" class="gp__num">2</text>
+          <circle cx="40" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <circle cx="110" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <text x="40" y="63" text-anchor="middle" class="gp__num">1</text>
+          <text x="110" y="63" text-anchor="middle" class="gp__num">2</text>
         </g>
 
         <line class="gp__mid-thick" x1="122" y1="58" x2="178" y2="58" :stroke="BLUE" stroke-linecap="round" />
 
         <g class="gp__half gp__half--r gp__half--hold">
           <line x1="202" y1="58" x2="248" y2="58" :stroke="SUB" stroke-width="1.5" stroke-linecap="round" />
-          <circle cx="190" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <circle cx="260" cy="58" r="13" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
-          <text x="190" y="62" text-anchor="middle" class="gp__num">3</text>
-          <text x="260" y="62" text-anchor="middle" class="gp__num">4</text>
+          <circle cx="190" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <circle cx="260" cy="58" r="15" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
+          <text x="190" y="63" text-anchor="middle" class="gp__num">3</text>
+          <text x="260" y="63" text-anchor="middle" class="gp__num">4</text>
         </g>
       </svg>
       <div class="gp__meta"><Katex expr="w_{12}=w_{34}=0.05,\ w_{23}=0.90" /></div>
@@ -96,16 +96,16 @@ const WEAK = '#b42318'
 }
 .gp__panel { text-align: center; }
 .gp__title {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #1a1a1a;
 }
 .gp__badge {
   display: inline-block;
   margin: 0.3rem 0 0.2rem;
-  padding: 0.15rem 0.55rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.98rem;
   font-weight: 600;
   border: 1px solid #cfdbed;
   background: #f9fbff;
@@ -120,22 +120,22 @@ const WEAK = '#b42318'
   overflow: visible;
 }
 .gp__dir {
-  font-size: 11px;
+  font-size: 16px;
   font-family: system-ui, sans-serif;
 }
 .gp__num {
-  font-size: 12px;
+  font-size: 16px;
   fill: #1a1a1a;
   font-family: system-ui, sans-serif;
 }
 .gp__meta {
   margin-top: 0.25rem;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   color: #444444;
 }
 .gp__result {
   margin-top: 0.15rem;
-  font-size: 1.05rem;
+  font-size: 1.28rem;
   font-weight: 700;
 }
 .gp__result--bad { color: #b42318; }

@@ -6,20 +6,19 @@ const BLUE = '#1c3177'
 const SUB = '#7f96c2'
 const WEAK = '#b42318'
 
+const props = defineProps<{ step?: number }>()
+
 const { $clicks } = useSlideContext()
-/** スライド先頭の導入クリックを除き、ゲーム説明と同期（0..4） */
+/** step を渡したときはその絵を固定する。未指定ならクリックで 0..4 を進める。 */
 const step = computed(() => {
+  if (props.step !== undefined) return Math.min(Math.max(props.step, 0), 4)
   const c = Number($clicks.value ?? 0)
-  return Math.min(Math.max(c - 1, 0), 4)
+  return Math.min(Math.max(c + 1, 1), 4)
 })
 </script>
 
 <template>
   <div class="ad" :data-step="step">
-    <div class="ad__title">
-      守備が全辺に <Katex expr="w" /> を配分 → 攻撃が引っ張り <Katex expr="x" /> を選ぶ
-    </div>
-
     <svg viewBox="0 0 360 200" class="ad__svg" aria-hidden="true">
       <g class="ad__turn ad__turn--def">
         <rect x="8" y="8" width="72" height="22" rx="11" fill="#e4ebf6" :stroke="BLUE" stroke-width="1.5" />
@@ -94,18 +93,18 @@ const step = computed(() => {
       </g>
 
       <g class="ad__cost">
-        <rect x="100" y="134" width="160" height="26" rx="8" fill="#fff5f4" stroke="#f3c1bc" />
-        <foreignObject x="100" y="134" width="160" height="26">
+        <rect x="70" y="132" width="220" height="28" rx="8" fill="#fff5f4" stroke="#f3c1bc" />
+        <foreignObject x="70" y="132" width="220" height="28">
           <div xmlns="http://www.w3.org/1999/xhtml" class="ad__fo ad__fo--atk">
-            <Katex expr="C=\sum w_e(x_u-x_v)^2" />
+            <Katex expr="\sum w_{uv}(x_u-x_v)^2" />
           </div>
         </foreignObject>
       </g>
       <g class="ad__min">
-        <rect x="100" y="134" width="160" height="26" rx="8" fill="#e4ebf6" stroke="#cfdbed" />
-        <foreignObject x="100" y="134" width="160" height="26">
+        <rect x="70" y="132" width="220" height="28" rx="8" fill="#e4ebf6" stroke="#cfdbed" />
+        <foreignObject x="70" y="132" width="220" height="28">
           <div xmlns="http://www.w3.org/1999/xhtml" class="ad__fo ad__fo--def">
-            <Katex expr="\lambda_2=\min_x C(x;w)" />
+            <Katex expr="\lambda_2=\min_{x\in X}" />
           </div>
         </foreignObject>
       </g>
@@ -116,7 +115,7 @@ const step = computed(() => {
 <style scoped>
 .ad {
   width: 100%;
-  max-width: 20rem;
+  max-width: 100%;
   margin: 0 auto;
   color: #1a1a1a;
 }

@@ -59,9 +59,9 @@ const step = computed(() => {
           <Katex expr="x=\log_n m" />
         </div>
       </foreignObject>
-      <foreignObject x="2" y="2" width="90" height="20">
+      <foreignObject x="2" y="2" width="168" height="22">
         <div xmlns="http://www.w3.org/1999/xhtml" class="cr__ax-html">
-          <Katex expr="y=\log_n\mathsf{OPT}" />
+          <Katex expr="y=\log_n\mathsf{OPT}_{\mathrm{AC}}" />
         </div>
       </foreignObject>
 
@@ -88,7 +88,7 @@ const step = computed(() => {
         <circle cx="160" cy="20" r="7" fill="#fff" :stroke="BLUE" stroke-width="1.8" />
       </svg>
       <div class="cr__panel-meta">
-        <Katex expr="m\approx n,\ \mathsf{OPT}\approx n^{-3}" /> → 点は A₂ 側
+        <Katex expr="m\approx n,\ \mathsf{OPT}_{\mathrm{AC}}\approx n^{-3}" /> → 点は A₂ 側
       </div>
     </div>
 
@@ -110,7 +110,7 @@ const step = computed(() => {
         <circle cx="90" cy="6" r="6" fill="#fff" :stroke="BLUE" stroke-width="1.6" />
       </svg>
       <div class="cr__panel-meta">
-        <Katex expr="\mathsf{OPT}\gtrsim n^{-2}" />，密なら → 点は A₁ 側
+        <Katex expr="\mathsf{OPT}_{\mathrm{AC}}\gtrsim n^{-2}" />，密なら → 点は A₁ 側
       </div>
     </div>
   </div>
