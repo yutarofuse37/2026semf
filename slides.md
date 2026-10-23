@@ -619,30 +619,333 @@ $$
 凹性より $\mathrm{ANF}(\bar w_T)\ge\frac1T\sum_{t=1}^T\mathrm{ANF}(w_t)$ が成り立つ．両辺の期待値を取り，上の不等式を $(1+\eta)$ で割ると所望の式が得られる．$\square$
 
 ---
-class: roomy proof-steps
+class: anf-proof
 ---
 
 # 強連結グラフの下界
 
-<div class="stmt stmt-lem">
+$G=(V,E)$ は有向グラフ，$n=|V|\ge2$ とする．既存容量は $0$，配分の総和は $1$ である．
 
-**補題 7.** $G$ が強連結で $n\ge2$ のとき
+**補題 7.** $G$ が強連結ならば，次が成り立つ．
+
+<div class="anf-goal">
 
 $$
-\mathsf{OPT}_{\mathrm{ANF}}\ge\frac1{2(n-1)}.
+\mathsf{OPT}_{\mathrm{ANF}}\ge\frac{1}{2(n-1)}.
 $$
 
 </div>
 
-**証明**．根 $r\in V$ を固定する．$r$ から全頂点へ向かう有向全域木と，全頂点から $r$ へ向かう有向全域木の和集合を $H$ とする．辺数は $k\le2(n-1)$．任意の $u,v$ は $u\to r\to v$ と進めるので $H$ は強連結．
+**証明の方針：この値を達成する配分 $q\in\Delta_E$ を一つ構成する．**
+
+<div class="anf-route">
+  <div class="anf-route-step"><strong>二つの有向全域木</strong><span>高々 <Katex expr="2(n-1)" /> 本の辺を選ぶ</span></div>
+  <div class="anf-route-arrow">→</div>
+  <div class="anf-route-step"><strong>どのカットにも容量</strong><span>選んだ辺に均等に配分する</span></div>
+  <div class="anf-route-arrow">→</div>
+  <div class="anf-route-step"><strong>すべての頂点対に流量</strong><span>最大流・最小カット定理を使う</span></div>
+</div>
+
+全順序対で平均しても，同じ下界が保たれる．
+
+<!--
+この補題は最適値の下界であり，任意の配分の ANF の下界ではない．
+以降の図は同じ6頂点の例を使うが，証明は任意の n>=2 に対して成立する．
+-->
+
+---
+class: anf-proof
+---
+
+# 根から全頂点へ向かう有向全域木
+
+根 $v_0\in V$ を固定する．強連結なので，$v_0$ からすべての頂点に到達できる．
+
+<div class="anf-split">
+<AnfArborescence mode="out" />
+<div>
+
+<span class="anf-out">外向き全域木 <Katex expr="T^+" /></span> を取る．
+
+すべての $v\in V$ に対し，$T^+$ に
 
 $$
-q\in\Delta_E,\qquad
-q_e=\begin{cases}\frac1k,&e\in E(H),\\ 0,&e\notin E(H).\end{cases}
+v_0\longrightarrow v
 $$
 
-任意の $\emptyset\neq S\subsetneq V$ は $H$ の経路で外へ出るので，$c_q(S)=\sum_{e\in\delta^+(S)}q_e\ge\frac1k$．全ての順序対で $\kappa_{sr}(q)\ge\frac1{2(n-1)}$．平均しても同じ下界を得る．$\mathsf{OPT}_{\mathrm{ANF}}$ はこの $q$ の値以上である．$\square$
+という有向路が存在する．
 
+<div class="anf-reason">
+
+**構成：** $v_0$ から幅優先探索を行い，各頂点を初めて発見した辺を残す．
+
+根以外の各頂点に入る辺がちょうど1本なので，
+
+$$
+|E(T^+)|=n-1.
+$$
+
+</div>
+</div>
+</div>
+
+<!--
+探索時に選ぶ辺はすべて G の有向辺である．
+根以外の各頂点には，探索木の親から入る辺をちょうど1本選ぶ．
+選んだ辺に沿って探索深さが1増えるので有向閉路はなく，
+発見時の探索路が根から各頂点への有向路となる．
+-->
+
+---
+class: anf-proof
+---
+
+# 全頂点から根へ向かう有向全域木
+
+強連結なので，すべての頂点から同じ根 $v_0$ に到達できる．
+
+<div class="anf-split">
+<AnfArborescence mode="in" />
+<div>
+
+<span class="anf-in">内向き全域木 <Katex expr="T^-" /></span> を取る．
+
+すべての $v\in V$ に対し，$T^-$ に
+
+$$
+v\longrightarrow v_0
+$$
+
+という有向路が存在する．
+
+<div class="anf-reason">
+
+**構成：** $G$ の全辺を反転したグラフで，$v_0$ から外向き全域木を取る．選んだ辺を元の向きに戻す．
+
+$$
+|E(T^-)|=n-1.
+$$
+
+</div>
+</div>
+</div>
+
+<!--
+反転グラフでは v_0 から全頂点に到達可能なので，前頁と同じ探索ができる．
+そこで選んだ木の各辺を元の向きに戻すと，すべての辺は G に属し，
+各頂点から v_0 への有向路が得られる．
+T^+ の各辺を単に反転して T^- を作るのではない．二つの木は独立に選ぶ．
+-->
+
+---
+class: anf-proof
+---
+
+# 二つの木の辺に容量を配る
+
+二つの木の辺集合の和集合を $A:=E(T^+)\cup E(T^-)$，その辺数を $k:=|A|$ とおく．
+
+<div class="anf-split">
+<AnfArborescence mode="union" />
+<div>
+
+共通する有向辺は1回だけ数えるので，
+
+$$
+1\le k\le(n-1)+(n-1)=2(n-1).
+$$
+
+選んだ $k$ 本に，予算 $1$ を均等に配分する：
+
+$$
+q_e:=
+\begin{cases}
+1/k,&e\in A,\\
+0,&e\notin A.
+\end{cases}
+$$
+
+$$
+q_e\ge0,\qquad
+\sum_{e\in E}q_e=k\cdot\frac1k=1.
+$$
+
+したがって $q\in\Delta_E$ である．
+
+</div>
+</div>
+
+<div class="anf-note">逆向きの辺は別の有向辺として数える．図では，元のグラフのうち <Katex expr="A" /> に属する辺だけを描いている．</div>
+
+<!--
+この図では外向きの木5辺と内向きの木5辺に共通辺が1本あるので，和集合は9辺．
+一般の証明では共通辺の数を知る必要はなく，k<=2(n-1) だけを用いる．
+-->
+
+---
+class: anf-proof
+---
+
+# 根がカットの内側にある場合
+
+任意の $\emptyset\neq S\subsetneq V$ を固定する．まず $v_0\in S$ の場合を考える．
+
+<div class="anf-split">
+<AnfArborescence mode="cut-inside" />
+<div>
+
+$S\neq V$ なので，$b\in V\setminus S$ を選べる．
+
+<span class="anf-out">外向き全域木 <Katex expr="T^+" /></span> の有向路
+
+$$
+v_0\longrightarrow b
+$$
+
+は，$S$ の内側から外側へ向かう．
+
+この経路が**最初に $S$ から出る辺**を $e$ とすると，
+
+$$
+e\in\delta^+(S)\cap E(T^+)
+\subseteq\delta^+(S)\cap A.
+$$
+
+</div>
+</div>
+
+<div class="anf-note"><Katex expr="\delta^+(S):=\{(u,v)\in E:u\in S,\ v\notin S\}" />．破線は頂点集合 <Katex expr="S" /> の区分を表す．</div>
+
+<!--
+経路を v_0=x_0,x_1,...,x_l=b とする．
+j=min{i:x_i が S の外側} は終点が外側なので存在し，始点が内側なので j>=1．
+従って x_{j-1} は S の内側，x_j は外側であり，(x_{j-1},x_j) が所望の辺．
+S 自体の連結性は仮定していない．
+-->
+
+---
+class: anf-proof
+---
+
+# 根がカットの外側にある場合
+
+次に $v_0\notin S$ の場合を考える．$S\neq\emptyset$ なので，$a\in S$ を選べる．
+
+<div class="anf-split">
+<AnfArborescence mode="cut-outside" />
+<div>
+
+<span class="anf-in">内向き全域木 <Katex expr="T^-" /></span> の有向路
+
+$$
+a\longrightarrow v_0
+$$
+
+は，$S$ の内側から外側へ向かう．
+
+この経路が**最初に $S$ から出る辺**を $e$ とすると，
+
+$$
+e\in\delta^+(S)\cap E(T^-)
+\subseteq\delta^+(S)\cap A.
+$$
+
+途中で $S$ に入り直しても，最初の1本は必ず存在する．
+
+</div>
+</div>
+
+<div class="anf-note">二つの場合を合わせると，任意の非自明な <Katex expr="S" /> から <Katex expr="A" /> の辺が少なくとも1本出る．</div>
+
+<!--
+図の経路は a から一度 S の外へ出て，再び S に入り，最後に根へ至る．
+経路が境界を1回だけ横切るという仮定は不要であることも示している．
+内向きの木を使う理由は，この場合も S から「出る」有向辺が必要だからである．
+-->
+
+---
+class: anf-proof
+---
+
+# すべてのカットに容量がある
+
+任意の $\emptyset\neq S\subsetneq V$ について，$|\delta^+(S)\cap A|\ge1$ が示された．
+
+<div class="anf-case-grid">
+<div>
+<div class="anf-case-label"><Katex expr="v_0\in S" />：外向きの木を使う</div>
+<AnfArborescence mode="cut-inside" />
+</div>
+<div>
+<div class="anf-case-label"><Katex expr="v_0\notin S" />：内向きの木を使う</div>
+<AnfArborescence mode="cut-outside" />
+</div>
+</div>
+
+$$
+\begin{aligned}
+c_q(S)
+&=\sum_{e\in\delta^+(S)}q_e
+=\sum_{e\in\delta^+(S)\cap A}\frac1k\\
+&=\frac{|\delta^+(S)\cap A|}{k}
+\ge\frac1k
+\ge\frac1{2(n-1)}.
+\end{aligned}
+$$
+
+<!--
+第2の等号は A 以外の辺の容量が0であることによる．
+最初の不等号は二つの場合分け，最後の不等号は k<=2(n-1) による．
+同じ配分 q について，すべての非自明な S の下界が同時に成り立つ．
+-->
+
+---
+class: anf-proof
+---
+
+# 最大流を評価し，全順序対で平均する
+
+任意の異なる $s,t\in V$ を取る．$\mathcal C_{st}:=\{S\subseteq V:s\in S,\ t\notin S\}$ とおく．
+
+最大流・最小カット定理と，すべてのカットの下界から，
+
+$$
+\kappa_{st}(q)
+=\min_{S\in\mathcal C_{st}}c_q(S)
+\ge\frac1k
+\ge\frac1{2(n-1)}.
+$$
+
+<div class="anf-final-chain">
+
+この評価を $n(n-1)$ 個の順序対で平均すると，
+
+$$
+\begin{aligned}
+\mathrm{ANF}(q)
+&=\frac1{n(n-1)}
+\sum_{\substack{(s,t)\in V\times V\\s\ne t}}\kappa_{st}(q)\\
+&\ge\frac1{n(n-1)}\cdot n(n-1)\cdot\frac1{2(n-1)}
+=\frac1{2(n-1)}.
+\end{aligned}
+$$
+
+</div>
+
+$q\in\Delta_E$ なので，最適値はこの配分の値以上である：
+
+$$
+\mathsf{OPT}_{\mathrm{ANF}}
+=\max_{w\in\Delta_E}\mathrm{ANF}(w)
+\ge\mathrm{ANF}(q)
+\ge\frac1{2(n-1)}.\qquad\square
+$$
+
+<!--
+ANF は各頂点対の最大流を個別に計算して平均する指標である．
+全頂点対のフローを同時に流す多品種流の主張ではない．
+これで補題7の証明が完了する．次は補題8の一般グラフの下界へ進む．
+-->
 
 
 ---
@@ -1274,3 +1577,4 @@ class: dense refs
 - <span class="cite-cf"><a href="https://doi.org/10.1137/080734029" target="_blank" rel="noopener">[Spielman, Srivastava 2011]</a></span> Graph Sparsification by Effective Resistances. *SIAM Journal on Computing*, 40(6), 1913–1926.
 - <span class="cite-cf"><a href="https://doi.org/10.1137/090771430" target="_blank" rel="noopener">[Spielman, Teng 2014]</a></span> Nearly Linear Time Algorithms for Preconditioning and Solving Symmetric, Diagonally Dominant Linear Systems. *SIAM Journal on Matrix Analysis and Applications*, 35(3), 835–885.
 - <span class="cite-cf"><a href="https://doi.org/10.1137/S0036144504443821" target="_blank" rel="noopener">[Sun, Boyd, Xiao, Diaconis 2006]</a></span> The Fastest Mixing Markov Process on a Graph and a Connection to a Maximum Variance Unfolding Problem. *SIAM Review*, 48(4), 681–699.
+

@@ -1,3 +1,5 @@
+@import './anf-lower-bound.css';
+
 :root {
   --st-blue: #1c3177;
   --st-blue-sub: #7f96c2;
@@ -340,3 +342,4 @@ div[class*='page-number'] {
   padding-top: 0.45rem;
   padding-bottom: 0.45rem;
 }
+
