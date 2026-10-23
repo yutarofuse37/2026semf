@@ -1,0 +1,40 @@
+/* Scoped to the eight slides proving the strongly connected ANF lower bound. */
+.slidev-layout.anf-proof {
+  font-size: 1.16rem;
+  line-height: 1.5;
+}
+.anf-proof p { margin: 0.5rem 0; }
+.anf-proof .katex-display { margin: 0.65rem 0 !important; }
+.anf-proof .anf-lead { margin: 0.8rem 0 1rem; }
+.anf-proof .anf-split {
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  gap: 1.7rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.anf-proof .anf-split p:first-child { margin-top: 0; }
+.anf-proof .anf-note { font-size: 0.91rem; color: #46526a; line-height: 1.5; }
+.anf-proof .anf-reason { margin-top: 1rem; padding-top: 0.65rem; border-top: 1px solid #cfdbed; }
+.anf-proof .anf-out { color: #1c3177; font-weight: 700; }
+.anf-proof .anf-in { color: #087f8c; font-weight: 700; }
+.anf-proof .anf-cross { color: #b42318; font-weight: 700; }
+.anf-proof .anf-goal { font-size: 1.38rem; margin: 1rem 0; }
+.anf-proof .anf-route {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.6rem 0 1.3rem;
+}
+.anf-proof .anf-route-step { text-align: center; }
+.anf-proof .anf-route-step strong { display: block; color: #1c3177; margin-bottom: 0.45rem; }
+.anf-proof .anf-route-step span { font-size: 0.96rem; }
+.anf-proof .anf-route-arrow { color: #7f96c2; font-size: 1.8rem; }
+.anf-proof .anf-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.7rem; }
+.anf-proof .anf-case-grid .anf-tree-figure { width: 62%; margin: 0 auto; }
+.anf-proof .anf-case-grid .anf-tree-legend { display: none; }
+.anf-proof .anf-case-grid .anf-case-label { text-align: center; margin-bottom: 0; }
+.anf-proof .anf-final-chain { margin-top: 0.6rem; }
+.anf-proof .anf-final-chain .katex-display { margin: 0.65rem 0 !important; }
+.anf-proof .anf-final-line { margin-top: 1.4rem; color: #1c3177; font-weight: 700; }
