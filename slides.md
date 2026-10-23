@@ -619,34 +619,22 @@ $$
 凹性より $\mathrm{ANF}(\bar w_T)\ge\frac1T\sum_{t=1}^T\mathrm{ANF}(w_t)$ が成り立つ．両辺の期待値を取り，上の不等式を $(1+\eta)$ で割ると所望の式が得られる．$\square$
 
 ---
-class: anf-proof
+class: roomy
 ---
 
 # 強連結グラフの下界
 
-$G=(V,E)$ は有向グラフ，$n=|V|\ge2$ とする．既存容量は $0$，配分の総和は $1$ である．
+$G=(V,E)$ は有向グラフ，$n=|V|\ge2$ とする．
 
-**補題 7.** $G$ が強連結ならば，次が成り立つ．
+<div class="stmt stmt-lem">
 
-<div class="anf-goal">
+**補題 7.** $G$ が強連結ならば
 
 $$
 \mathsf{OPT}_{\mathrm{ANF}}\ge\frac{1}{2(n-1)}.
 $$
 
 </div>
-
-**証明の方針：この値を達成する配分 $q\in\Delta_E$ を一つ構成する．**
-
-<div class="anf-route">
-  <div class="anf-route-step"><strong>二つの有向全域木</strong><span>高々 <Katex expr="2(n-1)" /> 本の辺を選ぶ</span></div>
-  <div class="anf-route-arrow">→</div>
-  <div class="anf-route-step"><strong>どのカットにも容量</strong><span>選んだ辺に均等に配分する</span></div>
-  <div class="anf-route-arrow">→</div>
-  <div class="anf-route-step"><strong>すべての頂点対に流量</strong><span>最大流・最小カット定理を使う</span></div>
-</div>
-
-全順序対で平均しても，同じ下界が保たれる．
 
 <!--
 この補題は最適値の下界であり，任意の配分の ANF の下界ではない．
