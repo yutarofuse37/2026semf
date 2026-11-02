@@ -96,10 +96,10 @@ onBeforeUnmount(() => clearInterval(timer))
     <div class="demo-panel">
       <div class="edge-fig">
         <div class="edge-caption">
-          <span>辺の太さは現在の重み</span>
+          <span>辺の太さは現在の辺容量</span>
           <span class="edge-key">赤が次に増える</span>
         </div>
-        <svg class="edge-svg" viewBox="0 0 304 108" role="img" :aria-label="`3辺のパス。重み ${current.map(fmt).join('、')}。次に増やす辺は ${edgeName[activeEdge]}`">
+        <svg class="edge-svg" viewBox="0 0 304 108" role="img" :aria-label="`3辺のパス。辺容量 ${current.map(fmt).join('、')}。次に増やす辺は ${edgeName[activeEdge]}`">
           <line
             v-for="i in 3"
             :key="`e${i}`"

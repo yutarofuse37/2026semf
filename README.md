@@ -2,7 +2,7 @@
 
 **Multiplicative Weights Update for Maximizing Network Connectivity**
 
-全86枚のSlidevスライドです。GitHub Pagesで閲覧・発表でき、PDFもダウンロードできます。
+全59枚のSlidevスライドです。2ページの目次から各章へ移動できます。GitHub Pagesで閲覧・発表でき、PDFもダウンロードできます。
 
 - スライド：<https://yutarofuse37.github.io/2026semf/>
 - PDF：<https://yutarofuse37.github.io/2026semf/seminar.pdf>
@@ -58,6 +58,6 @@ Linuxでブラウザのシステム依存が不足する場合は `npx playwrigh
 4. 有向ANF / global mincut、近似保証、OPTのオーダー
 5. 無向algebraic connectivity、近似Fiedlerベクトル、計算量、OPTのオーダー
 
-発表者ノートは各スライド末尾のHTMLコメントに含まれ、発表者モードでも表示できます。第4章の総容量と第5章の総重みはともに1です。
+発表者ノートは各スライド末尾のHTMLコメントに含まれ、発表者モードでも表示できます。第4章・第5章とも，辺容量の総和は1です。
 
 元のSites版とは別のコピーです。このリポジトリの変更は元のSites版に自動反映されません。

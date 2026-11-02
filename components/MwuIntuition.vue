@@ -22,7 +22,7 @@ const step = computed(() => {
 const captionParts = computed(() => {
   switch (step.value) {
     case 0:
-      return { before: '現在の重み ', math: 'w^{(t)}', after: '（一様から開始）' }
+      return { before: '現在の辺容量 ', math: 'w^{(t)}', after: '（一様から開始）' }
     case 1:
       return { before: '近似Fiedler ', math: 'x^{(t)}', after: '：弱点を探る引っ張り' }
     case 2:
