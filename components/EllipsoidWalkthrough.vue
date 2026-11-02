@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, ref, useId, watch } from 'vue'
 import { useSlideContext } from '@slidev/client'
 import Katex from './Katex.vue'
 
-const props = withDefaults(defineProps<{ step?: number, showControls?: boolean }>(), { showControls: true })
+const props = withDefaults(defineProps<{ step?: number, showControls?: boolean, figureOnly?: boolean }>(), { showControls: true, figureOnly: false })
 const { $nav, $page, $renderContext } = useSlideContext()
 const isActive = computed(() => $nav.value.currentPage === $page.value)
 const isPresentation = computed(() => ['slide', 'presenter'].includes($renderContext.value))
@@ -67,13 +67,13 @@ onBeforeUnmount(pause)
 </script>
 
 <template>
-  <div class="ellipsoid-walk" :class="{ 'without-controls': !props.showControls || props.step !== undefined }" @click.stop @keydown.stop>
-    <div class="walk-heading">
+  <div class="ellipsoid-walk" :class="{ 'without-controls': !props.showControls || props.step !== undefined, 'figure-only': props.figureOnly }" @click.stop @keydown.stop>
+    <div v-if="!props.figureOnly" class="walk-heading">
       <strong><span v-if="props.step === undefined" class="step-number">{{ shown + 1 }} / {{ last + 1 }}</span>{{ names[shown] }}</strong>
       <span class="dimension-label">図は 2 次元の模式図</span>
     </div>
     <div class="walk-body">
-      <svg class="walk-plot" viewBox="0 0 440 223" role="img" :aria-label="description">
+      <svg class="walk-plot" :viewBox="props.figureOnly ? (shown === 8 ? '15 35 420 170' : '65 15 350 195') : '0 0 440 223'" role="img" :aria-label="description">
         <g v-if="shown === 8" class="infeasible-example">
           <rect x="30" y="48" width="135" height="123" rx="3" fill="#afc3e4" fill-opacity=".5" />
           <rect x="275" y="48" width="135" height="123" rx="3" fill="#f0b8b1" fill-opacity=".5" />
@@ -126,7 +126,7 @@ onBeforeUnmount(pause)
         <text v-if="shown !== 7" x="162" y="146" text-anchor="middle" class="feasible-label">Kτ</text>
         <circle v-if="shown === 7" cx="160" cy="139" r="5.5" fill="#087f8c" stroke="white" stroke-width="2" />
         <path v-if="shown === 7" d="M157 135 L120 107" fill="none" stroke="#087f8c" stroke-width="1.5" />
-        <text v-if="shown === 7" x="115" y="99" text-anchor="middle" class="success-label">実行可能点 u</text>
+        <text v-if="shown === 7" x="115" y="99" text-anchor="middle" class="success-label">{{ props.figureOnly ? 'u' : '実行可能点 u' }}</text>
         <path v-if="shown <= 1" d="M112 158 L82 174" fill="none" stroke="#1c3177" stroke-width="1.2" />
         <text v-if="shown <= 1" x="78" y="192" text-anchor="middle" class="feasible-caption">目標を満たす点</text>
 
@@ -149,7 +149,7 @@ onBeforeUnmount(pause)
         </g>
       </svg>
 
-      <div class="walk-explanation" aria-live="polite" aria-atomic="true">
+      <div v-if="!props.figureOnly" class="walk-explanation" aria-live="polite" aria-atomic="true">
         <template v-if="shown === 0">
           <p>「ANF を <Katex expr="\tau" /> 以上にできるか」を調べる．</p>
           <div class="walk-math compact"><Katex expr="K_\tau\subseteq[0,1]^d\subseteq E_0" display /><Katex expr="E_0:=\{u:\|u\|_2\le\sqrt d\}" display /></div>
@@ -197,7 +197,7 @@ onBeforeUnmount(pause)
         </template>
       </div>
     </div>
-    <div class="walk-controls" v-if="props.showControls && isPresentation && props.step === undefined && !headless">
+    <div class="walk-controls" v-if="!props.figureOnly && props.showControls && isPresentation && props.step === undefined && !headless">
       <button type="button" @click="move(shown - 1)" :disabled="shown === 0" aria-label="楕円体法の説明を一段階戻す">前へ</button>
       <button type="button" class="primary" @click="move(shown + 1)" :disabled="shown === last" aria-label="楕円体法の説明を一段階進める">次へ</button>
       <button type="button" @click="toggle" :disabled="reducedMotion" :aria-pressed="playing">{{ playing ? '一時停止' : '再生' }}</button>
@@ -242,5 +242,15 @@ onBeforeUnmount(pause)
 .walk-controls button:disabled { opacity:.38; cursor:default; }
 .walk-controls button:focus-visible { outline:3px solid #7f96c2; outline-offset:2px; }
 .control-hint { color:#64748b; margin-left:8px; font-size:12px; }
+.ellipsoid-walk.figure-only { height:98px; }
+.figure-only .walk-body { display:block; height:100%; }
+.figure-only .walk-plot { height:100%; overflow:hidden; }
+.figure-only .walk-plot text { font-size:24px !important; }
+.figure-only .walk-plot .point-label { font-size:28px !important; }
+.figure-only .walk-plot .feasible-label { font-size:30px !important; }
+.figure-only .walk-plot .plot-caption,
+.figure-only .walk-plot .infeasible-title,
+.figure-only .walk-plot .feasible-caption,
+.figure-only .walk-plot .red { display:none; }
 @media print { .walk-controls { display:none; } }
 </style>

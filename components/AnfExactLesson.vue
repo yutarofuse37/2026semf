@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
-import { useSlideContext } from '@slidev/client'
+import { useNav, useSlideContext } from '@slidev/client'
 import Katex from './Katex.vue'
 import EllipsoidWalkthrough from './EllipsoidWalkthrough.vue'
+import EllipsoidPrintSummary from './EllipsoidPrintSummary.vue'
 
 const props = withDefaults(defineProps<{ phase?: 'all' | 'lp' | 'ellipsoid' }>(), { phase: 'all' })
 const { $clicks, $clicksContext, $frontmatter, $nav, $page, $renderContext } = useSlideContext()
+const { isPrintMode, isPrintWithClicks } = useNav()
+const showPrintSummary = computed(() => props.phase === 'ellipsoid' && isPrintMode.value && !isPrintWithClicks.value)
 const last = computed(() => props.phase === 'lp' ? 0 : props.phase === 'ellipsoid' ? 8 : 10)
 const clickId = `anf-exact-${useId()}`
 // Register the animation's own range. A frontmatter clicks override is cached
@@ -76,7 +79,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="exact-lesson" :data-step="stage" :data-display-step="displayStage" :data-phase="props.phase" @keydown.right.capture.prevent.stop="advance" @keydown.left.capture.prevent.stop="retreat">
+  <EllipsoidPrintSummary v-if="showPrintSummary" />
+  <div v-else class="exact-lesson" :data-step="stage" :data-display-step="displayStage" :data-phase="props.phase" @keydown.right.capture.prevent.stop="advance" @keydown.left.capture.prevent.stop="retreat">
     <div v-if="props.phase !== 'lp'" class="lesson-path">
       <template v-if="props.phase === 'ellipsoid'">
         <span :class="{ current: stage === 0 }">目標値を固定</span><span>→</span>
